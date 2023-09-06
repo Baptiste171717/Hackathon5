@@ -103,4 +103,4 @@ text = document
 
 
 def ask_question_to_pdf(question):
-    return gpt3_completion(question, text)["choices"][0]["message"]["content"]
+    return gpt3_completion(question, "")["choices"][0]["message"]["content"]
