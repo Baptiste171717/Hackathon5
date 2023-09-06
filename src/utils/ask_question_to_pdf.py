@@ -94,12 +94,12 @@ def gpt3_completion(question, text):
     )
 
 
-# questionz = "what time is it?"
+questionz = "Ask me a question from the text"
 
-# text1="six heures"
+text1 = "six heures"
 text = document
 
-# print(gpt3_completion(text1, questionz))
+# print(gpt3_completion(questionz, text1))
 
 
 def ask_question_to_pdf(question):
