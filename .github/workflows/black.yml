@@ -13,8 +13,6 @@ jobs:
           options: "--check --verbose"
           src: "./src"
           version: "~= 22.0"
-  
-          version: "~= 22.0"
 
   ci-tests:
     runs-on: windows-latest
