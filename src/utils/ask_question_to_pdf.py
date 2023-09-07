@@ -112,7 +112,7 @@ def gpt2_completion(answer, text, question):
             {"role": "user", "content": question},
             {
                 "role": "user",
-                "content": "Is my answer true according the text and the asked question?",
+                "content": "Is my answer true according to the text and the asked question?",
             },
         ],
     )
