@@ -2,7 +2,7 @@ const promptForm = document.getElementById("prompt-form");
 const submitButton = document.getElementById("submit-button");
 const questionButton = document.getElementById("question-button");
 const messagesContainer = document.getElementById("messages-container");
-
+const indiceButton = document.getElementById("indice-button");
 const appendHumanMessage = (message) => {
   const humanMessageElement = document.createElement("div");
   humanMessageElement.classList.add("message", "message-human");
@@ -71,3 +71,25 @@ const handleQuestionClick = async (event) => {
 };
 
 questionButton.addEventListener("click", handleQuestionClick);
+
+
+const handleIndiceClick = async () => {
+  if (questionButton.dataset.question !== undefined) {
+    appendAIMessage(async () => {
+      const response = await fetch("/indice", {
+        method: "POST",
+        body: JSON.stringify({ question: questionButton.dataset.question }),
+        "Content-Type": "text/plain"
+      });
+      const result = await response.json();
+      const indice = result.answer;
+
+      return indice;
+    })
+  };
+  // else{
+
+  // }
+};
+
+indiceButton.addEventListener("click", handleIndiceClick);

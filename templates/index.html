@@ -1,46 +1,75 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <title>Mon A.I.de mémoire</title>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
+<head>
+  <title>Mon A.I.de mémoire</title>
 
-  <body>
-    <main class="main-container">
-      <header class="header">
-        <h1 class="header-title">Mon A.I.de mémoire</h1>
-      </header>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    /* Style pour masquer l'indice par défaut */
+    #indice-container {
+      display: none;
+    }
+  </style>
+</head>
 
-      <section id="messages-container" class="messages-container">
-        <div class="message message-ai">
-          Je suis ton AIssistant de cours personnel ! Pose-moi une question sur
-          le cours et je te répondrai.
-        </div>
-      </section>
+<body>
+  <main class="main-container">
+    <header class="header">
+      <h1 class="header-title">Mon A.I.de mémoire</h1>
+    </header>
 
-      <form id="prompt-form" class="prompt-container">
-        <label for="prompt" class="prompt-label">Message</label>
+    <section id="messages-container" class="messages-container">
+      <div class="message message-ai">
+        Je suis ton AIssistant de cours personnel ! Pose-moi une question sur
+        le cours et je te répondrai.
+      </div>
+    </section>
 
-        <input
-          type="text"
-          id="prompt"
-          name="prompt"
-          class="prompt-input"
-          autocomplete="off"
-        />
+    <form id="prompt-form" class="prompt-container">
+      <label for="prompt" class="prompt-label">Message</label>
 
-        <button type="submit" class="button" id="submit-button">Envoyer</button>
+      <input type="text" id="prompt" name="prompt" class="prompt-input" autocomplete="off" />
 
-        <button type="button" class="button" id="question-button">
-          Pose-moi une question !
-        </button>
-      </form>
+      <button type="submit" class="button" id="submit-button">Envoyer</button>
 
-      <script src="{{ url_for('static', filename='prompt.js') }}"></script>
-    </main>
-  </body>
+      <!-- Bouton "Pose-moi une question" -->
+      <button type="button" class="button" id="question-button">Pose-moi une question !</button>
+
+      <!-- Bouton "Indice" -->
+      <button type="button" class="button" id="indice-button">Indice</button>
+    </form>
+
+    <!-- Conteneur de l'indice -->
+    <div id="indice-container">
+      <!-- Contenu de l'indice -->
+      Voici l'indice que vous avez demandé.
+    </div>
+
+    <script src="{{ url_for('static', filename='prompt.js') }}"></script>
+    <script>
+      // Récupérez les références aux éléments HTML
+      var questionButton = document.getElementById("question-button");
+      var indiceButton = document.getElementById("indice-button");
+      var indiceContainer = document.getElementById("indice-container");
+
+      // Ajoutez un gestionnaire d'événement au bouton "Pose-moi une question"
+      questionButton.addEventListener("click", function () {
+        // Ajoutez ici le code pour gérer le comportement du bouton "Pose-moi une question"
+        // Par exemple, vous pouvez afficher une boîte de dialogue pour saisir la question.
+      });
+
+      // Ajoutez un gestionnaire d'événement au bouton "Indice"
+      indiceButton.addEventListener("click", function () {
+        // Affichez ou masquez l'élément d'indice en fonction de son état actuel
+        if (indiceContainer.style.display === "none") {
+          indiceContainer.style.display = "block"; // Afficher l'indice
+        } else {
+          indiceContainer.style.display = "none"; // Masquer l'indice
+        }
+      });
+    </script>
+  </main>
+</body>
+
 </html>

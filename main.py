@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 from flask import render_template
 from src.utils.ask_question_to_pdf import ask_question_to_pdf
+import json
 
 app = Flask(__name__)
 
@@ -44,5 +45,15 @@ def answer():
         + "\n"
         + "Ma réponse est-elle juste?"
     )
+    app.logger.info(fgt)
+    return {"answer": ask_question_to_pdf(fgt)}
+
+
+@app.route("/indice", methods=["POST"])
+def indice():
+    data = json.loads(request.data)
+    app.logger.info(data)
+    question = data["question"]
+    fgt = "peux-tu m'aider succintement sans me donner la réponse" + "/n" + question
     app.logger.info(fgt)
     return {"answer": ask_question_to_pdf(fgt)}
