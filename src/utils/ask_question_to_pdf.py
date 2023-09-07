@@ -130,8 +130,4 @@ print(gpt2_completion(answerz, text1, questionzz))
 
 
 def ask_question_to_pdf(question):
-    return gpt3_completion(question, text)["choices"][0]["message"]["content"]
-
-
-def give_question_about_pdf():
-    return gpt3_completion(questionz, text)
+    return gpt3_completion(question, "")["choices"][0]["message"]["content"]
