@@ -7,8 +7,12 @@ from flask import redirect
 from flask import url_for
 from flask import render_template
 from src.utils.ask_question_to_pdf import ask_question_to_pdf
+<<<<<<< HEAD
 from werkzeug.utils import secure_filename
 
+=======
+import json
+>>>>>>> 197e7274af797e1ec726ed33f906577f2c87b973
 
 app = Flask(__name__)
 
@@ -64,5 +68,15 @@ def answer():
         + "\n"
         + "Ma réponse est-elle juste?"
     )
+    app.logger.info(fgt)
+    return {"answer": ask_question_to_pdf(fgt)}
+
+
+@app.route("/indice", methods=["POST"])
+def indice():
+    data = json.loads(request.data)
+    app.logger.info(data)
+    question = data["question"]
+    fgt = "peux-tu m'aider succintement sans me donner la réponse" + "/n" + question
     app.logger.info(fgt)
     return {"answer": ask_question_to_pdf(fgt)}
