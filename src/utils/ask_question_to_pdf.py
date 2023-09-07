@@ -79,8 +79,6 @@ def split_text(text, chunk_size=5000):
 
 
 filename = os.path.join(os.path.dirname(__file__), "filename.pdf")
-document = read_pdf(filename)
-chunks = split_text(document)
 
 
 def gpt3_completion(question, text):
@@ -94,8 +92,8 @@ def gpt3_completion(question, text):
     )
 
 
-text = document
-
-
 def ask_question_to_pdf(question):
+    document = read_pdf(filename)
+    chunks = split_text(document)
+    text = document
     return gpt3_completion(question, text)["choices"][0]["message"]["content"]
