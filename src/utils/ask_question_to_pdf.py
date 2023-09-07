@@ -89,17 +89,44 @@ def gpt3_completion(question, text):
         messages=[
             {"role": "system", "content": "You are a teacher"},
             {"role": "user", "content": question},
-            {"role": "assistant", "content": text},
+            {"role": "user", "content": text},
+        ],
+    )
+
+
+def gpt2_completion(answer, text, question):
+    return openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a teacher"},
+            {"role": "user", "content": text},
+            {
+                "role": "system",
+                "content": "You have access to the text given by the user",
+            },
+            {"role": "user", "content": answer},
+            {
+                "role": "system",
+                "content": "You have access to the answer given by the user",
+            },
+            {"role": "user", "content": question},
+            {
+                "role": "user",
+                "content": "Is my answer true according the text and the asked question?",
+            },
         ],
     )
 
 
 questionz = "Ask me a question from the text"
+questionzz = "Quelle heure est-il?"
+answerz = " il est sept heures"
 
-text1 = "six heures"
+text1 = " il est six heures"
 text = document
 
 # print(gpt3_completion(questionz, text1))
+print(gpt2_completion(answerz, text1, questionzz))
 
 
 def ask_question_to_pdf(question):
