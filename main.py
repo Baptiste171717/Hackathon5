@@ -19,8 +19,8 @@ def image():
 @app.route("/prompt", methods=["GET", "PATCH", "DELETE", "POST"])
 def prompt():
     # print(ask_question_to_pdf("Are you a teacher"))
-    request.form["prompt"]
-    return {"answer": ask_question_to_pdf("/prompt")}
+    question = request.form["prompt"]
+    return {"answer": ask_question_to_pdf(question)}
 
 
 @app.route("/question", methods=["GET"])
@@ -32,7 +32,17 @@ def question():
 
 @app.route("/answer", methods=["POST"])
 def answer():
-    print(request.form)
-    question = request.form["/question"]
-    answer = request.form["/prompt"]
-    return {"answer": ask_question_to_pdf(question + answer + "Is my answer true?")}
+    app.logger.info(request.form)
+    question = request.form["question"]
+    answer = request.form["prompt"]
+    fgt = (
+        "question:"
+        + question
+        + "\n"
+        + "réponse:"
+        + answer
+        + "\n"
+        + "Ma réponse est-elle juste?"
+    )
+    app.logger.info(fgt)
+    return {"answer": ask_question_to_pdf(fgt)}
