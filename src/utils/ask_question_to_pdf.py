@@ -94,6 +94,38 @@ def gpt3_completion(question, text):
     )
 
 
+<<<<<<< HEAD
+=======
+def gpt2_completion(answer, text, question):
+    return openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a teacher"},
+            {"role": "user", "content": text},
+            {
+                "role": "system",
+                "content": "You have access to the text given by the user",
+            },
+            {"role": "user", "content": answer},
+            {
+                "role": "system",
+                "content": "You have access to the answer given by the user",
+            },
+            {"role": "user", "content": question},
+            {
+                "role": "user",
+                "content": "Is my answer true according to the text and the asked question?",
+            },
+        ],
+    )
+
+
+questionz = "Ask me a question from the text"
+questionzz = "Quelle heure est-il?"
+answerz = " il est sept heures"
+
+text1 = " il est six heures"
+>>>>>>> fc57e76bf7fc40691e2f6600f4c35993307a138d
 text = document
 
 
