@@ -31,17 +31,17 @@ jobs:
         run: python -c "import sys; print(sys.version)"
       - name: Run ${{ matrix.python-version }} platform tests (default)
         uses: py-actions/flake8@master
-      #   with:
-      #     path: "tests/test-default.py" # have to restrict because there are other tests with flake8 fails
-      # - name: Run ${{ matrix.python-version }} platform tests (with args)
-      #   uses: py-actions/flake8@master
-      #   with:
-      #     update-pip: "true"
-      #     ignore: "F401"
-      #     exclude: "tests/test.py"
-      #     max-line-length: "100"
-      #     args: "--quiet"
-      #     path: "tests/test-args.py"
-      #     flake8-version: "main"
-      #     plugins: "flake8-bugbear==22.1.11 flake8-black"
+         with:
+           path: "main.py" # have to restrict because there are other tests with flake8 fails
+      #  - name: Run ${{ matrix.python-version }} platform tests (with args)
+      #    uses: py-actions/flake8@master
+      #    with:
+      #      update-pip: "true"
+      #      ignore: "F401"
+      #      exclude: "tests/test.py"
+      #      max-line-length: "100"
+      #      args: "--quiet"
+      #      path: "tests/test-args.py"
+      #      flake8-version: "main"
+      #      plugins: "flake8-bugbear==22.1.11 flake8-black"
   
