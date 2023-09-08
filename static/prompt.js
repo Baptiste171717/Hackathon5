@@ -125,26 +125,23 @@ const handleIndiceClick = async () => {
 indiceButton.addEventListener("click", handleIndiceClick);
 
 const handleDescriptionClick = async (event) => {
-  appendImage(async () => {
-    const response = await fetch("/image", {
-      method: "GET",
-    });
-    return image_description;
+  // Utilisation de fetch pour obtenir l'URL de l'image depuis le serveur
+  const response = await fetch("/image", {
+    method: "GET",
   });
+
+  // Vérifiez si la réponse du serveur est correcte (statut 200 OK)
+  if (response.status === 200) {
+    // Obtenez l'URL de l'image à partir de la réponse JSON (ajustez si nécessaire)
+    const imageDescription = await response.json();
+    const imageUrl = imageDescription.url; // Suppose que l'URL de l'image est stockée dans une propriété "url"
+
+    // Utilisation de la fonction appendImage pour ajouter l'image au conteneur de messages
+    appendImage(() => imageUrl);
+  } else {
+    // Gérer les erreurs si la demande échoue
+    appendHumanMessage("Échec de la récupération de l'image.");
+  }
 };
 
 descriptionButton.addEventListener("click", handleDescriptionClick);
-
-
-// const getImageURL = () => {
-//   // Ici, vous pouvez retourner l'URL de l'image souhaitée
-//   // Par exemple :
-//   return "/image"; // Remplacez par l'URL réelle de votre image
-// };
-
-// const imagePromise = async () => {
-//   return getImageURL();
-// };
-
-// // Appelez ensuite appendImage avec l'imagePromise
-// appendImage(imagePromise);
