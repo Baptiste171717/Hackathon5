@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, send_file
 from flask import request
 from flask import render_template
 from src.utils.ask_question_to_pdf import ask_question_to_pdf
@@ -13,8 +13,8 @@ def hello_world():
 
 
 @app.route("/image")
-def image():
-    return "<p>l</p>"
+def serve_image():
+    return send_file("static/description.jpg", mimetype="image/jpeg")
 
 
 @app.route("/prompt", methods=["GET", "PATCH", "DELETE", "POST"])
@@ -54,6 +54,12 @@ def indice():
     data = json.loads(request.data)
     app.logger.info(data)
     question = data["question"]
-    fgt = "peux-tu m'aider succintement sans me donner la réponse" + "/n" + question
+    fgt = (
+        "peux-tu me donner un indice incomplet sans me donner la réponse (en moins de 30 caractères) ?"
+        + "/n"
+        + question
+        + "/n"
+        + "j'insiste sur le fait que l'indice que tu donnes ne doive pas répondre à la question"
+    )
     app.logger.info(fgt)
     return {"answer": ask_question_to_pdf(fgt)}
