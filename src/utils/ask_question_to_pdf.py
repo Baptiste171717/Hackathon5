@@ -123,8 +123,8 @@ def test_read_pdf():
 def ask_question_to_pdf(question, filename):
     path_file = os.path.join(os.path.dirname(__file__), filename)
     if filename[-3:] == "pdf":
-        document = read_pdf(path_file)
+        doc = read_pdf(path_file)
     if filename[-3:] == "txt":
-        document = read_txt(path_file)
+        doc = read_txt(path_file)
     # chunks = split_text(document)
-    return gpt3_completion(question, document)["choices"][0]["message"]["content"]
+    return gpt3_completion(question, doc)["choices"][0]["message"]["content"]
