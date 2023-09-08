@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   <style>
     /* Style pour masquer l'indice par défaut */
-    #indice-container {
+    #indice-container,
+    #description-container {
       display: none;
     }
   </style>
@@ -17,6 +18,9 @@
   <main class="main-container">
     <header class="header">
       <h1 class="header-title">Mon A.I.de mémoire</h1>
+
+      <!-- Bouton "Description du site" en haut de la page -->
+      <button type="button" class="button" id="description-button">Description du site</button>
     </header>
 
     <section id="messages-container" class="messages-container">
@@ -46,12 +50,21 @@
       Voici l'indice que vous avez demandé.
     </div>
 
+    <!-- Conteneur de la description du site -->
+    <div id="description-container">
+      <!-- Contenu de la description du site -->
+      Bienvenue sur Mon A.I.de mémoire. Ce site est votre assistant personnel de cours, conçu pour répondre à vos
+      questions et vous fournir des indices sur le cours.
+    </div>
+
     <script src="{{ url_for('static', filename='prompt.js') }}"></script>
     <script>
       // Récupérez les références aux éléments HTML
       var questionButton = document.getElementById("question-button");
       var indiceButton = document.getElementById("indice-button");
+      var descriptionButton = document.getElementById("description-button");
       var indiceContainer = document.getElementById("indice-container");
+      var descriptionContainer = document.getElementById("description-container");
 
       // Ajoutez un gestionnaire d'événement au bouton "Pose-moi une question"
       questionButton.addEventListener("click", function () {
@@ -66,6 +79,16 @@
           indiceContainer.style.display = "block"; // Afficher l'indice
         } else {
           indiceContainer.style.display = "none"; // Masquer l'indice
+        }
+      });
+
+      // Ajoutez un gestionnaire d'événement au bouton "Description du site"
+      descriptionButton.addEventListener("click", function () {
+        // Affichez ou masquez l'élément de la description en fonction de son état actuel
+        if (descriptionContainer.style.display === "none") {
+          descriptionContainer.style.display = "block"; // Afficher la description
+        } else {
+          descriptionContainer.style.display = "none"; // Masquer la description
         }
       });
     </script>

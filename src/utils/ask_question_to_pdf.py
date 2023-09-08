@@ -38,6 +38,13 @@ def read_pdf(filename):
     return context
 
 
+def read_txt(filename):
+    f = open(filename, "r")
+    message = f.read()
+    f.close()
+    return message
+
+
 def split_text(text, chunk_size=5000):
     """
     Splits the given text into chunks of the specified chunk size.
