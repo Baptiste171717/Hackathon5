@@ -104,3 +104,13 @@ def ask_question_to_pdf(question):
     chunks = split_text(document)
     text = document
     return gpt3_completion(question, text)["choices"][0]["message"]["content"]
+
+
+def test_read_pdf():
+    text_test = os.path.join(os.path.dirname(__file__), "fichier_test.pdf")
+    return (
+        read_pdf(text_test)
+        == " Bonjour, ceci est un test pour savoir si la fonction fonctionne ;§$d& $d afa¤a"
+        + "/n"
+        + "Saut de ligne"
+    )
