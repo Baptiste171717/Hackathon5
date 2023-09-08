@@ -109,6 +109,17 @@ def find_doc():
     return Liste_doc
 
 
+def test_read_pdf():
+    text_test = os.path.join(os.path.dirname(__file__), "fichier_test.pdf")
+    return (
+        read_pdf(text_test)
+        == " Bonjour, ceci est un test pour savoir si la fonction fonctionne "
+        + ";§$d& $d afa¤a"
+        + "/n"
+        + "Saut de ligne"
+    )
+
+
 def ask_question_to_pdf(question, filename):
     path_file = os.path.join(os.path.dirname(__file__), filename)
     if filename[-3:] == "pdf":
