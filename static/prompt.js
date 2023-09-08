@@ -95,7 +95,7 @@ const handleQuestionClick = async (event) => {
 
     questionButton.dataset.question = question;
     questionButton.classList.add("hidden");
-    submitButton.innerHTML = "Répondre à la question";
+    submitButton.innerHTML = "RÃ©pondre Ã  la question";
     return question;
   });
 };
@@ -124,24 +124,31 @@ const handleIndiceClick = async () => {
 
 indiceButton.addEventListener("click", handleIndiceClick);
 
+// const handleDescriptionClick = async (event) => {
+//   // Utilisation de fetch pour obtenir l'URL de l'image depuis le serveur
+//   const response = await fetch("/image", {
+//     method: "GET",
+//   });
+
+//   // VÃ©rifiez si la rÃ©ponse du serveur est correcte (statut 200 OK)
+//   if (response.status === 200) {
+//     // Obtenez l'URL de l'image Ã  partir de la rÃ©ponse JSON (ajustez si nÃ©cessaire)
+//     const imageDescription = await response.json();
+//     const imageUrl = imageDescription.url; // Suppose que l'URL de l'image est stockÃ©e dans une propriÃ©tÃ© "url"
+
+//     // Utilisation de la fonction appendImage pour ajouter l'image au conteneur de messages
+//     appendImage(() => imageUrl);
+//   } else {
+//     // GÃ©rer les erreurs si la demande Ã©choue
+//     appendHumanMessage("Ã‰chec de la rÃ©cupÃ©ration de l'image.");
+//   }
+// };
+
+// descriptionButton.addEventListener("click", handleDescriptionClick);
+
 const handleDescriptionClick = async (event) => {
-  // Utilisation de fetch pour obtenir l'URL de l'image depuis le serveur
-  const response = await fetch("/image", {
-    method: "GET",
-  });
-
-  // Vérifiez si la réponse du serveur est correcte (statut 200 OK)
-  if (response.status === 200) {
-    // Obtenez l'URL de l'image à partir de la réponse JSON (ajustez si nécessaire)
-    const imageDescription = await response.json();
-    const imageUrl = imageDescription.url; // Suppose que l'URL de l'image est stockée dans une propriété "url"
-
-    // Utilisation de la fonction appendImage pour ajouter l'image au conteneur de messages
-    appendImage(() => imageUrl);
-  } else {
-    // Gérer les erreurs si la demande échoue
-    appendHumanMessage("Échec de la récupération de l'image.");
-  }
+  // Rediriger vers l'URL "/image"
+  window.location.href = "/image";
 };
 
 descriptionButton.addEventListener("click", handleDescriptionClick);
