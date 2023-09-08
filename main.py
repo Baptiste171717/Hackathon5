@@ -40,9 +40,9 @@ def nouveau1():
 
 @app.route("/action_page", methods=["POST"])
 def upload():
-    UPLOAD_FOLDER = "src/utils"
+    UP = "src/utils"
     file = request.files["filename"]
-    file.save(os.path.join(os.path.dirname(__file__), UPLOAD_FOLDER, file.filename))
+    file.save(os.path.join(os.path.dirname(__file__), UP, file.filename))
     return redirect("/document_choice")
 
 
@@ -89,11 +89,13 @@ def indice():
     app.logger.info(data)
     question = data["question"]
     command = (
-        "peux-tu me donner un indice incomplet sans me donner la réponse (en moins de 30 caractères) ?"
+        "peux-tu me donner un indice incomplet sans me donner "
+        + "la réponse (en moins de 30 caractères) ?"
         + "/n"
         + question
         + "/n"
-        + "j'insiste sur le fait que l'indice que tu donnes ne doive pas répondre à la question"
+        + "j'insiste sur le fait que l'indice que tu "
+        + "donnes ne doive pas répondre à la question"
     )
     app.logger.info(command)
     return {"answer": ask_question_to_pdf(command)}
