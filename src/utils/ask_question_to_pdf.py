@@ -85,6 +85,7 @@ def split_text(text, chunk_size=5000):
     return chunks
 
 
+os.listdir(os.path.dirname(__file__))
 filename = os.path.join(os.path.dirname(__file__), "filename.pdf")
 
 
@@ -99,6 +100,7 @@ def gpt3_completion(question, text):
     )
 
 
+<<<<<<< HEAD
 def ask_question_to_pdf(question):
     document = read_pdf(filename)
     chunks = split_text(document)
@@ -114,3 +116,19 @@ def test_read_pdf():
         + "/n"
         + "Saut de ligne"
     )
+=======
+def find_pdf():
+    L = os.listdir(os.path.dirname(__file__))
+    Liste_pdf = []
+    for i in range(len(L)):
+        if L[i][-3:] == "pdf":
+            Liste_pdf.append(L[i])
+    return Liste_pdf
+
+
+def ask_question_to_pdf(question, filename):
+    path_file = os.path.join(os.path.dirname(__file__), filename)
+    document = read_pdf(path_file)
+    # chunks = split_text(document)
+    return gpt3_completion(question, document)["choices"][0]["message"]["content"]
+>>>>>>> b26b67b2cd9c06b3e2b85f8779dda54fb82b917c
