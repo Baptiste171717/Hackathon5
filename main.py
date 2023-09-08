@@ -7,7 +7,7 @@ from flask import redirect
 
 # from flask import url_for
 from flask import render_template
-from src.utils.ask_question_to_pdf import ask_question_to_pdf, find_pdf
+from src.utils.ask_question_to_pdf import ask_question_to_pdf, find_doc
 import json
 
 app = Flask(__name__)
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route("/document_choice")
 def choose_file():
-    return render_template("choose_file.html", Liste_pdf=find_pdf())
+    return render_template("choose_file.html", Liste_pdf=find_doc())
 
 
 chosen_file = "filename.pdf"

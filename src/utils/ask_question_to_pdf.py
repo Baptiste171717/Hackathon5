@@ -100,35 +100,20 @@ def gpt3_completion(question, text):
     )
 
 
-<<<<<<< HEAD
-def ask_question_to_pdf(question):
-    document = read_pdf(filename)
-    chunks = split_text(document)
-    text = document
-    return gpt3_completion(question, text)["choices"][0]["message"]["content"]
-
-
-def test_read_pdf():
-    text_test = os.path.join(os.path.dirname(__file__), "fichier_test.pdf")
-    return (
-        read_pdf(text_test)
-        == " Bonjour, ceci est un test pour savoir si la fonction fonctionne ;§$d& $d afa¤a"
-        + "/n"
-        + "Saut de ligne"
-    )
-=======
-def find_pdf():
+def find_doc():
     L = os.listdir(os.path.dirname(__file__))
-    Liste_pdf = []
+    Liste_doc = []
     for i in range(len(L)):
-        if L[i][-3:] == "pdf":
-            Liste_pdf.append(L[i])
-    return Liste_pdf
+        if (L[i][-3:] == "pdf") or (L[i][-3:] == "txt"):
+            Liste_doc.append(L[i])
+    return Liste_doc
 
 
 def ask_question_to_pdf(question, filename):
     path_file = os.path.join(os.path.dirname(__file__), filename)
-    document = read_pdf(path_file)
+    if filename[-3:] == "pdf":
+        document = read_pdf(path_file)
+    if filename[-3:] == "txt":
+        document = read_txt(path_file)
     # chunks = split_text(document)
     return gpt3_completion(question, document)["choices"][0]["message"]["content"]
->>>>>>> b26b67b2cd9c06b3e2b85f8779dda54fb82b917c
