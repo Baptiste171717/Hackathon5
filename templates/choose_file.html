@@ -1,0 +1,24 @@
+liste des fuchuers
+
+formulaire pour choisir un fichier
+    input de type text
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form method="POST" action="/choose_files">
+    <label for="file-select">Choose a file:</label>
+    <select name="files" id="files-select">
+        <option value="">--Please choose an option--</option>
+        {% for files in Liste_pdf %}
+            <option value= {{files}}>{{files}}</option>
+        {% endfor %}
+    </select>
+    <p><input type="submit" value="Submit"></p>
+</form>    
+
+</body>
+</html>
+
+
